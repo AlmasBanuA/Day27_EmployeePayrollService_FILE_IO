@@ -23,7 +23,6 @@ public class NIOFileAPITest {
 	private static String PLAY_WITH_NIO = "TempPlayGround";
 
 	@Test
-
 	/**
 	 * created method here when we given a path it will checked if it is exist or
 	 * not and confirm and if it is not exist then throws IOException
@@ -41,10 +40,12 @@ public class NIOFileAPITest {
 		 * delete file and check file not exists
 		 */
 		Path playPath = Paths.get(HOME + "/" + PLAY_WITH_NIO);
-		/*
-		 * if(Files.exists(playPath)) FileUtils.deleteFiles(playPath.toFile());
-		 * Assert.assertTrue(Files.notExists(homePath));
-		 */
+		Path p = Paths.get(HOME + "/playDelete.txt");
+		Assert.assertFalse(Files.exists(p));
+		Files.createFile(p);
+		Assert.assertTrue(Files.exists(p));
+		Files.delete(p);
+		Assert.assertFalse(Files.exists(p));
 
 		/**
 		 * create directory of playpath

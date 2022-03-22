@@ -1,9 +1,17 @@
 package com.day27.employeepayroll;
 
 /**
- * UC1:- Creating an Employee Payroll Service to Read and Write Employee Payroll to a Console 
- * 		 - Create Employee Payroll Class of id, name and Salary 
- * 		 - Read the information from the Console - Finally write the Employee Payroll to the Console
+ *  UC1 :- Create an Employee Payroll Service to Read and Write Employee Payroll to a Console
+ *         - Create Employee Payroll Class of id, name and Salary
+ *         - Read the information from the console
+ *         - Finally write the employee payroll to the console
+ *  UC2 :- Write a program to demonstrate File Operations like
+ *         - Check File Exists
+ *         - Delete File and Check File Not Exist
+ *         - Create Directory
+ *         - Create Empty File
+ *         - List Files, Directories as well as Files with Extension
+ *
  */
 import java.util.ArrayList;
 import java.util.List;
