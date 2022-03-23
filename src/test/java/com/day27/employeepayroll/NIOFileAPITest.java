@@ -1,17 +1,17 @@
 package com.day27.employeepayroll;
 
-/**
- * importing different classes
- */
+import static org.junit.Assert.assertTrue;
+
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.stream.IntStream;
-
-import org.junit.Assert;
 import org.junit.Test;
 
+/**
+ * Unit test
+ */
 public class NIOFileAPITest {
 
 	/**
@@ -19,13 +19,14 @@ public class NIOFileAPITest {
 	 * class has no access to it) private = restricted access However, it is
 	 * possible to access them if we provide public get and set methods.
 	 */
-	private static String HOME = System.getProperty("user.home");
+	private static String HOME = "C:\\Users\\user\\Desktop\\Almas";
 	private static String PLAY_WITH_NIO = "TempPlayGround";
 
 	@Test
+
 	/**
-	 * created method here when we given a path it will checked if it is exist or
-	 * not and confirm and if it is not exist then throws IOException
+	 * created method here when we given a path it will check it is exist or not and
+	 * confirm it incase if it is not exist then throws IOException
 	 * 
 	 * @throws IOException -throws exception
 	 */
@@ -34,46 +35,45 @@ public class NIOFileAPITest {
 		 * check file exists or not
 		 */
 		Path homePath = Paths.get(HOME);
-		Assert.assertTrue(Files.exists(homePath));
+		assertTrue(Files.exists(homePath));
+		System.out.println(homePath);
 
 		/**
-		 * delete file and check file not exists
+		 * Delete file and check file does not exist
 		 */
 		Path playPath = Paths.get(HOME + "/" + PLAY_WITH_NIO);
-		Path p = Paths.get(HOME + "/playDelete.txt");
-		Assert.assertFalse(Files.exists(p));
-		Files.createFile(p);
-		Assert.assertTrue(Files.exists(p));
-		Files.delete(p);
-		Assert.assertFalse(Files.exists(p));
+		if (Files.exists(playPath))
+			FileUtils.deleteFiles(playPath.toFile());
+		assertTrue(Files.notExists(playPath));
 
 		/**
-		 * create directory of playpath
+		 * Create a directory
 		 */
 		Files.createDirectory(playPath);
-		Assert.assertTrue(Files.exists(playPath));
+		assertTrue(Files.exists(playPath));
 
 		/**
-		 * create File
+		 * Create Empty File
 		 */
 		IntStream.range(1, 10).forEach(cntr -> {
 			Path tempFile = Paths.get(playPath + "/temp" + cntr);
-			Assert.assertTrue(Files.notExists(tempFile));
+			assertTrue(Files.notExists(tempFile));
 			try {
 				Files.createFile(tempFile);
 			} catch (IOException e) {
 			}
-			Assert.assertTrue(Files.exists(tempFile));
+			assertTrue(Files.exists(tempFile));
 		});
 
 		/**
-		 * List files, Directories as well as Files with Extension
+		 * List files, directories as well as files with extensions
 		 */
+		System.out.println("Files.list");
 		Files.list(playPath).filter(Files::isRegularFile).forEach(System.out::println);
+		System.out.println("Files.newDirectory");
 		Files.newDirectoryStream(playPath).forEach(System.out::println);
-		Files.newDirectoryStream(playPath, path -> path.toFile().isFile() && path.toString().startsWith("temp"))
+		System.out.println("Files.newDirectory with temp");
+		Files.newDirectoryStream(playPath, path -> path.toFile().isFile() && path.toString().contains("temp"))
 				.forEach(System.out::println);
-
 	}
-
 }
