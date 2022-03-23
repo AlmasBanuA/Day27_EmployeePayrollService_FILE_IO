@@ -11,6 +11,10 @@ package com.day27.employeepayroll;
  *         - Create Directory
  *         - Create Empty File
  *         - List Files, Directories as well as Files with Extension
+ *  UC3:-  Create a Watch Service to watch particular directory along with all Files and
+ *         Sub Directories - Using File IO Count Number of Entries in the File    
+ *  UC4:-  Create an Employee Payroll Service to store Employee Payroll into a File 
+ *  	   - Create Employee Payroll Class of id,          
  *
  */
 import java.util.ArrayList;
@@ -34,7 +38,7 @@ public class EmployeePayrollService {
 	/**
 	 * creating List of EmployeePayrollData
 	 */
-	private List<EmployeePayrollData> employeePayrollList;
+	public List<EmployeePayrollData> employeePayrollList;
 
 	/**
 	 * creating constructor of EmployeePayrollService() which is default type
@@ -58,6 +62,7 @@ public class EmployeePayrollService {
 	 * @param args - Default Java param (Not used)
 	 */
 	public static void main(String[] args) {
+
 		/**
 		 * creating List of Type EmployeePayrollData using ArrayList to store all the
 		 * employeePayrolldata
@@ -65,7 +70,7 @@ public class EmployeePayrollService {
 		List<EmployeePayrollData> employeePayrollList = new ArrayList<EmployeePayrollData>();
 
 		/**
-		 * creating instance of EmployeePayrollData class
+		 * creating instance of EmployeePayrollService class
 		 */
 		EmployeePayrollService employeePayrollService = new EmployeePayrollService(employeePayrollList);
 
@@ -82,13 +87,13 @@ public class EmployeePayrollService {
 		/**
 		 * Calling method writeEmployeePayrollData to write the data
 		 */
-		employeePayrollService.writeEmployeeData();
+		employeePayrollService.writeEmployeeData(IOService.CONSOLE_IO);
 	}
 
 	/**
 	 * @param consoleInputReader Read employee data
 	 */
-	private void readEmployeeData(Scanner consoleInputReader) {
+	public void readEmployeeData(Scanner consoleInputReader) {
 		System.out.println("Enter employee ID : ");
 		int id = Integer.parseInt(consoleInputReader.nextLine());
 		System.out.println("Enter employee name : ");
@@ -106,7 +111,22 @@ public class EmployeePayrollService {
 	 * created method writeEmployeeData which writes the data of the employee in the
 	 * console
 	 */
-	private void writeEmployeeData() {
-		System.out.println("Writing Employee Payroll Data to Console\n" + employeePayrollList);
+	public void writeEmployeeData(IOService ioService) {
+		if (ioService.equals(IOService.CONSOLE_IO))
+			System.out.println("Writing Employee Payroll Data to Console\n" + employeePayrollList);
+		else if (ioService.equals(IOService.FILE_IO))
+			new EmployeePayrollFileIOService().writeData(employeePayrollList);
+	}
+
+	/**
+	 * create method countEntries -Using File IO Count Number of Entries in the File
+	 * 
+	 * @param ioService
+	 * @return number of entries
+	 */
+	public long countEntries(IOService ioService) {
+		if (ioService.equals(IOService.FILE_IO))
+			return new EmployeePayrollFileIOService().countEntries();
+		return 0;
 	}
 }
