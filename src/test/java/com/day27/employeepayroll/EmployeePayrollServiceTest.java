@@ -35,6 +35,7 @@ public class EmployeePayrollServiceTest {
 		 * calling the method countEntries from the IO_File
 		 */
 		long entries = employeePayrollService.countEntries(IOService.FILE_IO);
+		employeePayrollService.printData(IOService.FILE_IO);
 		assertEquals(3, entries);
 	}
 }

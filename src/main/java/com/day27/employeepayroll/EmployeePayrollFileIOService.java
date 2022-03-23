@@ -41,6 +41,18 @@ public class EmployeePayrollFileIOService {
 	}
 
 	/**
+	 * created method printData to print the employee payroll data Using FileIO
+	 * prints lines in the payroll file
+	 */
+	public void printData() {
+		try {
+			Files.lines(new File(PAYROLL_FILE_NAME).toPath()).forEach(System.out::println);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
+
+	/**
 	 * method created to count the number of entries given data type as lonh
 	 * 
 	 * @return -return to method created

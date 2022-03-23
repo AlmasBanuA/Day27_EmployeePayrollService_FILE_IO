@@ -14,7 +14,8 @@ package com.day27.employeepayroll;
  *  UC3:-  Create a Watch Service to watch particular directory along with all Files and
  *         Sub Directories - Using File IO Count Number of Entries in the File    
  *  UC4:-  Create an Employee Payroll Service to store Employee Payroll into a File 
- *  	   - Create Employee Payroll Class of id,          
+ *  	   - Create Employee Payroll Class of id,   
+ *  UC5:-  Ability for Employee Payroll Service to print the Employee Payrolls       
  *
  */
 import java.util.ArrayList;
@@ -116,6 +117,16 @@ public class EmployeePayrollService {
 			System.out.println("Writing Employee Payroll Data to Console\n" + employeePayrollList);
 		else if (ioService.equals(IOService.FILE_IO))
 			new EmployeePayrollFileIOService().writeData(employeePayrollList);
+	}
+
+	/**
+	 * created method printData to print the employee payroll data Using FileIO
+	 * prints lines in the payroll file
+	 * 
+	 * @param ioService Print Data
+	 */
+	public void printData(IOService ioService) {
+		new EmployeePayrollFileIOService().printData();
 	}
 
 	/**
