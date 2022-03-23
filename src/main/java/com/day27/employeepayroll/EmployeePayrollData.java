@@ -3,29 +3,28 @@ package com.day27.employeepayroll;
 public class EmployeePayrollData {
 
 	/**
-	 * private variables can only be accessed within the same class (an outside
-	 * class has no access to it) private = restricted access However, it is
-	 * possible to access them if we provide public get and set methods.
+	 * creating variables
 	 */
-	private int employeeId;
-	private String employeeName;
-	private double employeeSalary;
+	public int id;
+	public String name;
+	public double salary;
 
 	/**
 	 * creating parameterized constructor of EmployeePayrollData by passing
 	 * parameters with no return type
 	 * 
-	 * @param employeeId     -passing employee Id
-	 * @param employeeName   -passing name
-	 * @param employeeSalary -passing employeeSalary
+	 * @param id     -passing employee Id
+	 * @param name   -passing employee name
+	 * @param salary -passing employee salary
 	 */
-	public EmployeePayrollData(int employeeId, String employeeName, double employeeSalary) {
+	public EmployeePayrollData(int id, String name, double salary) {
+
 		/**
-		 * this variables is used to point the current object
+		 * this Keyword is used to point the current object
 		 */
-		this.employeeId = employeeId;
-		this.employeeName = employeeName;
-		this.employeeSalary = employeeSalary;
+		this.id = id;
+		this.name = name;
+		this.salary = salary;
 	}
 
 	@Override
@@ -33,8 +32,6 @@ public class EmployeePayrollData {
 	 * The toString() method returns the String representation of the object.
 	 */
 	public String toString() {
-		return "EmployeePayrollData [employeeId=" + employeeId + ", employeeName=" + employeeName + ", employeeSalary="
-				+ employeeSalary + "]";
+		return "id =" + id + ",name =" + name + ",salary =" + salary;
 	}
-
 }
