@@ -3,6 +3,7 @@ package com.day27.employeepayroll;
 import static org.junit.Assert.assertEquals;
 
 import java.util.Arrays;
+import java.util.List;
 
 import org.junit.Test;
 
@@ -35,7 +36,18 @@ public class EmployeePayrollServiceTest {
 		 * calling the method countEntries from the IO_File
 		 */
 		long entries = employeePayrollService.countEntries(IOService.FILE_IO);
+
+		/**
+		 * calling PrintData method to print
+		 */
 		employeePayrollService.printData(IOService.FILE_IO);
+
+		/**
+		 * calling method readData to read the Employee Payroll File
+		 */
+		List<EmployeePayrollData> employeeList = employeePayrollService.readData(IOService.FILE_IO);
+		System.out.println(employeeList);
 		assertEquals(3, entries);
 	}
 }
+

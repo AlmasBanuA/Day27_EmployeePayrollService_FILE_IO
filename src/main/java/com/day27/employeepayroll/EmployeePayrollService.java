@@ -15,7 +15,9 @@ package com.day27.employeepayroll;
  *         Sub Directories - Using File IO Count Number of Entries in the File    
  *  UC4:-  Create an Employee Payroll Service to store Employee Payroll into a File 
  *  	   - Create Employee Payroll Class of id,   
- *  UC5:-  Ability for Employee Payroll Service to print the Employee Payrolls       
+ *  UC5:-  Ability for Employee Payroll Service to print the Employee Payrolls
+ *  UC6:-  Ability for Employee Payroll Service to read the Employee Payroll File
+		   so that some analysis can be performed       
  *
  */
 import java.util.ArrayList;
@@ -140,4 +142,19 @@ public class EmployeePayrollService {
 			return new EmployeePayrollFileIOService().countEntries();
 		return 0;
 	}
+
+	/**
+	 * created method readData from Employee Payroll Service to read the Employee
+	 * Payroll File
+	 * 
+	 * @param ioService
+	 * @return Employee Payroll Data List
+	 */
+	public List<EmployeePayrollData> readData(IOService ioService) {
+		if (ioService.equals(IOService.FILE_IO))
+			return new EmployeePayrollFileIOService().readData();
+		else
+			return null;
+	}
 }
+
